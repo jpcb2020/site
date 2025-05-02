@@ -56,13 +56,14 @@ header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 15px;
+    padding: 15px;
 }
 
 .logo h1 {
     font-size: 1.8rem;
     color: #3498db;
     font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 nav {
@@ -76,19 +77,51 @@ nav {
 }
 
 .menu li {
-    margin-left: 30px;
+    margin-left: 5px;
+    position: relative;
 }
 
 .menu a {
     text-decoration: none;
     color: #2c3e50;
     font-weight: 500;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    padding: 10px 15px;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
 }
 
 .menu a:hover {
     color: #3498db;
+    background-color: rgba(52, 152, 219, 0.08);
+}
+
+.menu a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background: #3498db;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+    border-radius: 3px;
+}
+
+.menu a:hover::after {
+    width: 70%;
+}
+
+.menu a.active {
+    color: #3498db;
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.menu a.active::after {
+    width: 70%;
 }
 
 .hamburger {
@@ -260,6 +293,191 @@ nav {
 }
 
 /* Guidelines Section */
+.guidelines-section {
+    background-color: #f8f9fa;
+    position: relative;
+    overflow: hidden;
+}
+
+.guidelines-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.05) 0%, rgba(103, 58, 183, 0.05) 100%);
+    z-index: 0;
+}
+
+.guidelines-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.guidelines-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.guideline-card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.guideline-card::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to right, #3498db, #9b59b6);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.guideline-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.guideline-card:hover::after {
+    transform: scaleX(1);
+}
+
+.guideline-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #3498db, #9b59b6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    color: #fff;
+    font-size: 2rem;
+    box-shadow: 0 10px 20px rgba(52, 152, 219, 0.2);
+    transition: all 0.4s ease;
+}
+
+.guideline-card:nth-child(1) .guideline-icon {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+}
+
+.guideline-card:nth-child(2) .guideline-icon {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.guideline-card:nth-child(3) .guideline-icon {
+    background: linear-gradient(135deg, #f39c12, #f1c40f);
+}
+
+.guideline-card:nth-child(4) .guideline-icon {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.guideline-card:hover .guideline-icon {
+    transform: rotateY(180deg);
+}
+
+.guideline-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    position: relative;
+    display: inline-block;
+}
+
+.guideline-content h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: #3498db;
+    transition: width 0.3s ease;
+}
+
+.guideline-card:nth-child(1) .guideline-content h3::after {
+    background-color: #27ae60;
+}
+
+.guideline-card:nth-child(2) .guideline-content h3::after {
+    background-color: #e74c3c;
+}
+
+.guideline-card:nth-child(3) .guideline-content h3::after {
+    background-color: #f39c12;
+}
+
+.guideline-card:nth-child(4) .guideline-content h3::after {
+    background-color: #3498db;
+}
+
+.guideline-card:hover .guideline-content h3::after {
+    width: 100%;
+}
+
+.guideline-content p {
+    color: #7f8c8d;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.guideline-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.guideline-content ul li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    color: #555;
+}
+
+.guideline-content ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #3498db;
+}
+
+.guideline-card:nth-child(1) .guideline-content ul li::before {
+    background-color: #27ae60;
+}
+
+.guideline-card:nth-child(2) .guideline-content ul li::before {
+    background-color: #e74c3c;
+}
+
+.guideline-card:nth-child(3) .guideline-content ul li::before {
+    background-color: #f39c12;
+}
+
+.guideline-card:nth-child(4) .guideline-content ul li::before {
+    background-color: #3498db;
+}
+
+/* Usage Guidelines Specific Styles */
 .guidelines-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -269,40 +487,191 @@ nav {
 
 .guideline-item {
     background-color: #fff;
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.guideline-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, #3498db, #9b59b6);
+    opacity: 0.7;
+}
+
+.guideline-item:nth-child(1)::before {
+    background: linear-gradient(90deg, #4a6bdf, #6a82fb);
+}
+
+.guideline-item:nth-child(2)::before {
+    background: linear-gradient(90deg, #f1c40f, #f39c12);
+}
+
+.guideline-item:nth-child(3)::before {
+    background: linear-gradient(90deg, #2ecc71, #27ae60);
+}
+
+.guideline-item:nth-child(4)::before {
+    background: linear-gradient(90deg, #e74c3c, #c0392b);
 }
 
 .guideline-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-15px);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
 }
 
 .guideline-icon {
-    font-size: 2.5rem;
-    color: #3498db;
-    margin-bottom: 20px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px auto 20px;
+    font-size: 2rem;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.guideline-item:nth-child(1) .guideline-icon {
+    background: linear-gradient(135deg, #4a6bdf, #6a82fb);
+}
+
+.guideline-item:nth-child(2) .guideline-icon {
+    background: linear-gradient(135deg, #f1c40f, #f39c12);
+}
+
+.guideline-item:nth-child(3) .guideline-icon {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+.guideline-item:nth-child(4) .guideline-icon {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.guideline-icon i {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.5s ease;
+}
+
+.guideline-item:hover .guideline-icon i {
+    transform: rotateY(360deg);
+}
+
+.guideline-text {
+    padding: 0 30px 30px;
     text-align: center;
 }
 
 .guideline-text h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
+    font-size: 1.6rem;
     color: #2c3e50;
-    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 15px;
+    display: inline-block;
+}
+
+.guideline-text h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: #3498db;
+    transition: width 0.3s ease;
+}
+
+.guideline-item:nth-child(1) .guideline-text h3::after {
+    background: #4a6bdf;
+}
+
+.guideline-item:nth-child(2) .guideline-text h3::after {
+    background: #f39c12;
+}
+
+.guideline-item:nth-child(3) .guideline-text h3::after {
+    background: #27ae60;
+}
+
+.guideline-item:nth-child(4) .guideline-text h3::after {
+    background: #e74c3c;
+}
+
+.guideline-item:hover .guideline-text h3::after {
+    width: 100%;
 }
 
 .guideline-text ul {
-    list-style-position: inside;
-    padding-left: 10px;
+    list-style: none;
+    padding: 0;
+    text-align: left;
 }
 
-.guideline-text li {
-    margin-bottom: 8px;
+.guideline-text ul li {
+    margin-bottom: 15px;
+    padding-left: 28px;
+    position: relative;
+    color: #555;
+    line-height: 1.6;
+}
+
+.guideline-text ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #3498db;
+    font-weight: bold;
+}
+
+.guideline-item:nth-child(1) .guideline-text ul li::before {
+    color: #4a6bdf;
+}
+
+.guideline-item:nth-child(2) .guideline-text ul li::before {
+    color: #f39c12;
+}
+
+.guideline-item:nth-child(3) .guideline-text ul li::before {
+    color: #27ae60;
+}
+
+.guideline-item:nth-child(4) .guideline-text ul li::before {
+    color: #e74c3c;
+}
+
+.guideline-text ul li strong {
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+@media (max-width: 768px) {
+    .guideline-item {
+        margin-bottom: 30px;
+    }
+    
+    .guideline-text {
+        padding: 0 20px 25px;
+    }
+    
+    .guideline-text h3 {
+        font-size: 1.4rem;
+    }
 }
 
 /* Contact Section */
@@ -475,13 +844,15 @@ footer {
     .menu {
         display: none;
         position: absolute;
-        top: 80px;
+        top: 70px;
         left: 0;
         width: 100%;
         background-color: #fff;
         flex-direction: column;
-        padding: 20px 0;
+        padding: 15px 0;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 0 0 10px 10px;
+        z-index: 1000;
     }
     
     .menu.active {
@@ -489,8 +860,22 @@ footer {
     }
     
     .menu li {
-        margin: 10px 0;
+        margin: 5px 15px;
         text-align: center;
+    }
+    
+    .menu a {
+        padding: 12px;
+        display: block;
+        border-radius: 5px;
+    }
+    
+    .menu a:hover {
+        background-color: rgba(52, 152, 219, 0.08);
+    }
+    
+    .menu a::after {
+        display: none;
     }
     
     .hamburger {
